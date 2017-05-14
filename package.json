@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/govindrai/Node-Notes-App/issues"
   },
-  "homepage": "https://github.com/govindrai/Node-Notes-App#readme"
+  "homepage": "https://github.com/govindrai/Node-Notes-App#readme",
+  "dependencies": {
+    "yargs": "^8.0.1"
+  }
 }
