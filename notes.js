@@ -30,7 +30,6 @@ function add_note(title, description) {
 	}
 
 	notes.push(note);
-
 	write_file(notes);
 
 }
@@ -61,7 +60,14 @@ function delete_note(title) {
 }
 
 function list_notes() {
-
+	try { 
+		var notes = read_notes();
+		notes.forEach(function(note, index){
+			console.log((index + 1).toString() + '. ' + note.title); 
+		});
+	} catch(e) {
+		console.log("There are no items to list. Please add some bro")
+	}
 }
 
 function say_hello() {
