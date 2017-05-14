@@ -35,6 +35,8 @@ function add_note(title, description) {
 
 }
 
+// can you hear me? yes damnit i can't hear you one moment
+
 function delete_note(title) {
 	try {
 		var notes = read_notes();
