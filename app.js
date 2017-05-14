@@ -1,18 +1,39 @@
-// we want to make a notes app
-// we want to be able to add notes, delete notes, list all our notes
-// we want to do this all in the command line, so we need to use ARGV
-// since we wont have a database we want to store our notes in a json file
+'use strict';
 
-console.log("Inside App.js")
+console.log("Inside App.js");
 
-var fs = require('fs')
+// system modules
+const fs = require('fs');
 
-try {
-	var notes = fs.readFileSync('notesdb.json')
-	console.log(notes)
-} catch(e) {
-	fs.openSync('notesdb.json', 'w')
-	console.log("sorry I couldn't read the file!")
+// npm modules
+const args = require('yargs')
+	.command('list', 'list all notes in the database')
+	.command('remove', 'remove a note from the database')
+	.alias('title', 't')
+	.describe('title', "The title of a note")
+	.demandCommand(1)
+	.alias('help', 'h')
+	.help()
+	.argv;
+
+// user modules
+const notes = require('./notes');
+
+// console.log(args)
+var command = args._[0]
+switch (command) {
+	case 'delete':
+		console.log("Okay let's remove a note!");
+		notes.delete_note(args.title);
+		break;
+	case 'add':
+		console.log("Okay let's add a note!");
+		notes.add_note(args.title, args.description)
+		break;
+	case 'list':
+		console.log("Okay let's list the notes!");
+		notes.list_notes()
+		break; 
+	default:
+		console.log("What the french you talking about");
 }
-
-console.log(process.argv)
