@@ -1,16 +1,14 @@
 'use strict';
 
-console.log("Inside App.js");
-
-// system modules
-const fs = require('fs');
-
-// npm modules
 const args = require('yargs')
 	.command('list', 'list all notes in the database')
-	.command('remove', 'remove a note from the database')
-	.alias('title', 't')
-	.describe('title', "The title of a note")
+	.command('remove', 'remove a note from the database', {
+		title: {
+			describe: "A note's title",
+			alias: 't',
+			demand: true
+		}
+	})
 	.demandCommand(1)
 	.alias('help', 'h')
 	.help()
@@ -33,7 +31,7 @@ switch (command) {
 	case 'list':
 		console.log("Okay let's list the notes!");
 		notes.list_notes()
-		break; 
+		break;
 	default:
 		console.log("What the french you talking about");
 }
